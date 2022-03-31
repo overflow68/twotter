@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Fredoka:wght@500&family=Play:wght@700&display=swap');
+.login-page{
+    font-family: Fredoka;
+}
+
+.container{
+    display: flex;
+}
+.login-title{
+    font-size: 5rem;
+    text-align: center;
+    margin: 25px;
+}
+.bg-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.img-cont{
+width: 50%;
+}
+
+
+
+.subtitle{
+    font-size:2rem;
+    margin:20px;
+}
+
+.logo1{
+    margin-left: 25px;
+    margin-top: 25px;
+}
+.centerLogo{
+    text-align: center;
+}
+
+
+
+
+.custom-btn-text{
+    align-self: center;
+    color: white;
+    font-size: 1.1rem;
+}
+
+
+
+.custom-btn-text1{
+    align-self: center;
+    color: rgb(14, 147, 255);
+    font-size: 1.1rem;
+}
+
+
+
+
+
+
+
+
+
+  

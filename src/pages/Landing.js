@@ -1,14 +1,36 @@
-import React, {useState} from 'react'
-import "../styles/login.css"
+import React, {useState, useEffect} from 'react'
+import {useNavigate} from "react-router-dom";
+
+import "../styles/Landing.css"
 import bg_img from "../images/bg.png"
 import {GrTwitter} from 'react-icons/gr'
+import Signup from '../components/Signup'
+import Login from '../components/Login'
+import { useUserAuth } from '../AuthProvider';
 
-function Login() {
+function Landing() {
   const[showLogin,setShowLogin] = useState(false)
+  const[showSignup,setShowSignup] = useState(false)
+  const {user} = useUserAuth()
+
+  useEffect(() => {
+   if (user){
+     navigateTo()
+   }
+  });
+
+  const navigate = useNavigate();
+  
+  const navigateTo = ()=>{
+    navigate('/home')
+  }
 
   const toggleLoginBtn = () =>{
 setShowLogin(!showLogin)
   }
+  const toggleSignupBtn = () =>{
+    setShowSignup(!showSignup)
+      }
   return (
     <div className='login-page'>
  
@@ -20,7 +42,7 @@ setShowLogin(!showLogin)
           <GrTwitter className='logo1' color='rgb(14, 147, 255)' size={70}/>
           <div className='login-title'>Acontecendo agora</div>
           <div className='subtitle'>Inscreva-se no Twitter hoje mesmo.</div>
-          <div className='go-register'><div className='custom-btn-text'>Inscreva-se com o seu e-mail</div></div>
+          <div onClick={toggleSignupBtn} className='go-register'><div className='custom-btn-text'>Inscreva-se com o seu e-mail</div></div>
           <div className='open-login'>Já tem conta?</div>
           <div className='go-login' onClick={toggleLoginBtn}><div className='custom-btn-text1'>Login</div></div>
           
@@ -28,18 +50,13 @@ setShowLogin(!showLogin)
         </div>
 
       </div>
-     <div id="myModal" onClick={toggleLoginBtn} class={showLogin ? "modal-open":"modal-closed"}>
-<div class="modal-content">
-  <span onClick={toggleLoginBtn} class="close">&times;</span>
-  <p>Some text in the Modal..</p>
-</div>
-
-</div>
+    <Login toggle={toggleLoginBtn} showLogin={showLogin}/>
+<Signup toggle={toggleSignupBtn} showSign={showSignup}/>
     </div>
   )
 }
 
-export default Login
+export default Landing
 
 /*<form className='login-form'>
 <label>E-mail:</label>

@@ -1,6 +1,6 @@
 import Home from './pages/Home.js'
-import Login from './pages/Login.js'
-import Signup from './pages/Signup.js'
+import Landing from './pages/Landing.js'
+import ProtectedRoute from './pages/ProtectedRoute.js'
 import "./styles/app.css"
 import { UserAuthContextProvider } from "./AuthProvider";
 import {
@@ -16,10 +16,9 @@ function App() {
       <Router>
         <UserAuthContextProvider>
         <Routes>
+          <Route path="/" element={<Landing/>}/>
+          <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
           
-          <Route path="/home" element={<Home/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/signup" element={<Signup/>}/>
           
         </Routes>
         </UserAuthContextProvider>
