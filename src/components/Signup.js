@@ -5,23 +5,31 @@ import { getDocs,doc, setDoc,collection,query,where } from "firebase/firestore";
 import {db} from '../Firebase.js'
 import {useUserAuth} from '../AuthProvider'
 function Signup({toggle,showSign}) {
-  const [isNameClicked, setNameClicked] = useState(false)
+  const [isUserNameClicked, setUserNameClicked] = useState(false)
   const [isEmailClicked, setEmailClicked] = useState(false)
   const [isPassClicked, setPassClicked] = useState(false)
+  const [isNameClicked, setNameClicked] = useState(false)
+  const inputUserName= useRef(null);
   const inputName= useRef(null);
   const inputEmail= useRef(null);
   const inputPassword= useRef(null);
-  const {signUp, user} = useUserAuth()
+  const {signUp} = useUserAuth()
 
   const usersRef = collection(db, "users");
 
 
   const focusField = () =>{
+    inputUserName.current.focus()
+    toggleTrue(setUserNameClicked)
+  }
+
+  const focusFieldName = () =>{
     inputName.current.focus()
     toggleTrue(setNameClicked)
   }
 
   const removeClicks = () =>{
+    if (isUserNameClicked && inputUserName.current.value ===""){setUserNameClicked(false)}
     if (isNameClicked && inputName.current.value ===""){setNameClicked(false)}
     if (isEmailClicked && inputEmail.current.value ===""){setEmailClicked(false)}
     if (isPassClicked && inputPassword.current.value ===""){setPassClicked(false)}
@@ -41,13 +49,14 @@ function Signup({toggle,showSign}) {
   }
 
   const handleSubmit = async () =>{
-    const q = query(usersRef, where("username", "==", inputName.current.value));
+    const q = query(usersRef, where("username", "==", inputUserName.current.value));
     const querySnapshot = await getDocs(q);
     if (querySnapshot.empty){
       signUp(inputEmail.current.value,inputPassword.current.value).then(async(userData)=>{
-        console.log(userData.user.uid)
         await setDoc(doc(db, "users", userData.user.uid), {
-        username: inputName.current.value,
+        name:inputName.current.value,
+        username: "@"+inputUserName.current.value,
+        bio:"",
         follows: [],
         following: [],
         posts:[]
@@ -64,9 +73,13 @@ function Signup({toggle,showSign}) {
     <span onClick={toggle} className="close">&times;</span>
     <div className='centerLogo'><GrTwitter className='centerLogo' color='rgb(14, 147, 255)' size={30}/></div>
     <h1>Criar a sua conta</h1>
-    <div onClick={focusField} className={isNameClicked? "focused":"input"}>
+    <div onClick={focusFieldName} className={isNameClicked? "focused":"input"}>
       Nome
       <input ref={inputName} onClick={toggleTrue}  className='input1' ></input>
+    </div>
+    <div onClick={focusField} className={isUserNameClicked? "focused":"input"}>
+      Nome
+      <input ref={inputUserName} onClick={toggleTrue}  className='input1' ></input>
     </div>
     <div onClick={focusFieldEmail} className={isEmailClicked? "focused":"input"}>
       E-mail

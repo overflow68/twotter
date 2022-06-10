@@ -1,44 +1,49 @@
-import React, {useEffect, useState} from 'react'
-import {useUserAuth} from '../AuthProvider'
+import React, {useState} from 'react'
+import { useUserInfoAuth } from '../userInfoProvider'
 import '../styles/home.css'
+import {GrTwitter} from 'react-icons/gr'
 import {AiFillHome,AiOutlineUser} from 'react-icons/ai'
 import {BiMessageAltDetail} from 'react-icons/bi'
-import getWindowDimensions from '../styles/windowDimensions'
-import {db} from '../Firebase'
-import { doc, getDoc } from "firebase/firestore";
-import { auth } from "../Firebase";
+import Feed from '../components/Feed'
+import { IconContext } from "react-icons";
+import SessionInfo from '../components/SessionInfo'
+import useWindowDimensions from '../styles/windowDimensions'
+import { useNavigate } from "react-router-dom";
+import {
+  Outlet
+} from "react-router-dom";
+
 
 function Home() {
-  const[userInfo, setUserInfo] = useState({})
-  const {user} = useUserAuth()
-  const{width, height} = getWindowDimensions()
- 
-  useEffect(() => {
-    const getUser = async()=>{ 
-      const docRef = doc(db, "users", auth.currentUser.uid);
-      const docSnap = await getDoc(docRef);
-    
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-      setUserInfo(docSnap.data())
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }}
-    getUser()
-
-   },[user]);
+  const{userInfo} = useUserInfoAuth()
+  const{width} = useWindowDimensions()
+  const[displayProfile,setDisplayProfile] = useState(false)
+  const navigate = useNavigate()
+  const goHome = ()=>{
+    navigate('/home')
+    setDisplayProfile(false)
+  }
+  
 
   return (
     <div className='cont-all'>
       <div className='menu'>
+      <IconContext.Provider value={{className:"react-icons"}}>
         <ul>
-          <li><AiFillHome></AiFillHome>{width > 1200? "Home":null}</li>
-          <li><BiMessageAltDetail></BiMessageAltDetail> {width > 1200? "Messages":null}</li>
-          <li><AiOutlineUser></AiOutlineUser>{width > 1200? "Profile":null}</li>
+          <li className='menu-option'><GrTwitter  color='rgb(14, 147, 255)' size={30}/></li>
+          <li onClick={goHome} className='menu-option'><div className='hover-wrap'><AiFillHome size={23} ></AiFillHome>{width > 1200? "Home":null}</div></li>
+          <li className='menu-option'><div className='hover-wrap'><BiMessageAltDetail size={23}></BiMessageAltDetail>{width > 1200? "Messages":null}</div></li>
+          <li className='menu-option'><div className='hover-wrap'><AiOutlineUser size={23}></AiOutlineUser>{width> 1200? "Profile":null}</div></li>
         </ul>
+        </IconContext.Provider>
+        <SessionInfo user ={userInfo}/>
       </div>
-      <div className='feed'>{userInfo.username}</div>
+      <div className='feed'>
+        {!displayProfile?<Feed showProfile={setDisplayProfile}/>:<Outlet/>}
+        
+      
+      </div>
+      
       <div className='trends'>3</div>
     </div>
   )

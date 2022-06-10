@@ -1,0 +1,42 @@
+.tw-pfp-cont2{
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 175px;
+    margin-left: 20px;
+}
+
+.tw-pfp2{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.cover-pic-cont{
+    overflow: hidden;
+}
+
+.cover-pic{
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profile-info2{
+    margin-top: 70px;
+}
+
+.edit-profile{
+    float: right;
+    border-radius: 50px;
+    border: 1px solid rgb(189, 189, 189);
+    padding: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.edit-profile:hover{
+    background-color: rgb(216, 216, 216);
+}

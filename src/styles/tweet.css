@@ -1,0 +1,82 @@
+.wrap-pfp-twt{
+    display: flex;
+    align-items: center;
+}
+
+.actual-tweet{
+    font-size: 0.85rem;
+}
+
+.author-id{
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    
+    
+}
+.author-id1{
+    font-weight: 600;
+}
+
+.interaction-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.tweet{
+    border: 1px solid rgb(243, 243, 243);
+}
+
+.time-elapsed{
+    color: rgb(145, 145, 145);
+    font-size: 0.9rem;
+}
+
+.bar-item{
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    justify-content: space-around;
+    color:rgb(112, 112, 112);
+}
+
+.back-color{
+    padding: 5px;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.back-color1:hover{
+    background-color: rgb(193, 209, 240);
+    
+}
+
+.bar-item1:hover{
+    color: rgb(0, 87, 218);
+}
+
+.back-color2:hover{
+    background-color: rgb(240, 193, 193);
+    
+}
+
+.bar-item2:hover{
+    color: rgb(218, 0, 0);
+}
+
+.back-color3:hover{
+    background-color: rgb(193, 240, 195);
+    
+}
+
+.bar-item3:hover{
+    color: rgb(25, 218, 0);
+}
+
+.usernameac{
+    color: rgb(145, 145, 145);
+    margin-left: 5px;
+}
+
