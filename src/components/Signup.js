@@ -57,8 +57,8 @@ function Signup({toggle,showSign}) {
         name:inputName.current.value,
         username: "@"+inputUserName.current.value,
         bio:"",
-        follows: [],
-        following: [],
+        MyFollowers: [],
+        ImFollowing: [],
         posts:[]
       });
       })

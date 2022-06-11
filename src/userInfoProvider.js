@@ -31,7 +31,8 @@ export function UserInfoContextProvider({ children }) {
     
           const addToFollow = async ()=> {
             await updateDoc(docRef, {
-              follows: arrayUnion(auth.currentUser.uid)
+              ImFollowing:arrayUnion(auth.currentUser.uid),
+              MyFollowers:arrayUnion(auth.currentUser.uid)
             });
             const docSnap = await getDoc(docRef);
             
@@ -41,7 +42,7 @@ export function UserInfoContextProvider({ children }) {
         
         if (docSnap.exists()) {
           
-          if(docSnap.data().follows.length <1){
+          if(docSnap.data().ImFollowing.length <1){
             addToFollow()
             
           }else{

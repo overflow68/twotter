@@ -25,7 +25,7 @@ function Feed({showProfile}) {
     
     if (!isLoading) {
       
-        const q = query(collection(db, "Twoots"),where("target","array-contains-any",userInfo.follows),orderBy("date","asc"));
+        const q = query(collection(db, "Twoots"),where("target","array-contains",userInfo.ImFollowing[0]),orderBy("date","asc"));
         const unsub = onSnapshot(q, (querySnapshot) => {
           const twts = [];
           
@@ -46,7 +46,7 @@ function Feed({showProfile}) {
 
   return (
     <div>
-      <CreateTweet username={userInfo.username} name={userInfo.name} followers={userInfo.follows} />
+      <CreateTweet username={userInfo.username} name={userInfo.name} MyFollowers={userInfo.MyFollowers} />
       {!isLoading?tweets.map((item) => {
         return <Tweet showProfile={showProfile} item={item} />;
       }):<div>stuff's loading</div>}

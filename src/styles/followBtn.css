@@ -1,0 +1,29 @@
+.follow{
+    background-color: black;
+    float: right;
+    border-radius: 50px;
+    border: 1px solid rgb(189, 189, 189);
+    padding: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+    color: white;
+}
+.follow:hover{
+    background-color: rgb(41, 41, 41);
+}
+
+.following{
+    float: right;
+    border-radius: 50px;
+    border: 1px solid rgb(189, 189, 189);
+    padding: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+    width: 85px;
+    text-align: center;
+
+}
+.following:hover{
+    background-color: rgb(255, 203, 203);
+    color: red;
+}

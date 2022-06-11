@@ -12,6 +12,7 @@ function Tweet(props) {
 
  const goToProfile = ()=>{
   navigate(`/home/${props.item.target[0]}`);
+  /*console.log(window.location.href)*/
   props.showProfile(true)
  }
  

@@ -1,7 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react'
 import '../styles/editProfile.css'
+import { db } from '../Firebase'
+import { doc, updateDoc } from "firebase/firestore";
 
-function EditProfile({user,toggleModal,showModal}) {
+
+function EditProfile({userId,user,toggleModal,showModal}) {
 const[bioCharacters,setBioChars] = useState(0)
 const[nameCharacters,setNameChars] = useState(0)
 const[isLoading, setLoading]= useState(true)
@@ -25,6 +28,17 @@ useEffect(()=>{
   
 },[isLoading])
 
+const saveChanges = async() =>{
+  const userRef = doc(db, "users", userId);
+
+// Set the "capital" field of the city 'DC'
+await updateDoc(userRef, {
+  bio:bioChars.current.value,
+  name:nameChars.current.value
+});
+
+}
+
 
 const updateNameChars = ()=>{
   setNameChars(nameChars.current.value.length)
@@ -40,7 +54,7 @@ const updateBioChars = ()=>{
         <div className='edit-header'>
             <span onClick={toggleModal} className="close">&times;</span>
             <div>Edit Profile</div>
-            <button className='save'>Save</button>
+            <button className='save' onClick={saveChanges}>Save</button>
             
         </div>
         <div className="input2">

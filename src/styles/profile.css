@@ -25,7 +25,13 @@
 }
 
 .profile-info2{
-    margin-top: 70px;
+    font-size: 1.3rem;
+    margin-top: 60px;
+    font-weight: 1000;
+}
+.profile-info1{
+    color: rgb(145, 145, 145);
+    font-size: 0.9rem;
 }
 
 .edit-profile{
@@ -39,4 +45,19 @@
 
 .edit-profile:hover{
     background-color: rgb(216, 216, 216);
+}
+
+
+
+
+.bio{
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.profile{
+    padding: 10px;
+}
+.follow-stats{
+    display: flex;
 }
