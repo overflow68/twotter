@@ -6,7 +6,7 @@ import { db } from "../Firebase";
 import {useUserInfoAuth} from '../userInfoProvider'
 
 
-function Feed({showProfile}) {
+function Feed() {
   const{user,userInfo} = useUserInfoAuth()
   const [tweets, setTweets] = useState([]);
   const [isLoading,setLoading] = useState(true)
@@ -48,7 +48,7 @@ function Feed({showProfile}) {
     <div>
       <CreateTweet username={userInfo.username} name={userInfo.name} MyFollowers={userInfo.MyFollowers} />
       {!isLoading?tweets.map((item) => {
-        return <Tweet showProfile={showProfile} item={item} />;
+        return <Tweet item={item} />;
       }):<div>stuff's loading</div>}
     </div>
   );

@@ -4,7 +4,7 @@ import '../styles/home.css'
 import {GrTwitter} from 'react-icons/gr'
 import {AiFillHome,AiOutlineUser} from 'react-icons/ai'
 import {BiMessageAltDetail} from 'react-icons/bi'
-import Feed from '../components/Feed'
+import Profile1 from '../components/Profile1'
 import { IconContext } from "react-icons";
 import SessionInfo from '../components/SessionInfo'
 import useWindowDimensions from '../styles/windowDimensions'
@@ -12,14 +12,14 @@ import { useNavigate } from "react-router-dom";
 
 
 
-function Home() {
+function Profile() {
   const{userInfo} = useUserInfoAuth()
   const{width} = useWindowDimensions()
   const[displayProfile,setDisplayProfile] = useState(false)
   const navigate = useNavigate()
   const goHome = ()=>{
     navigate('/home')
-    
+    setDisplayProfile(false)
   }
   
 
@@ -37,7 +37,7 @@ function Home() {
         <SessionInfo user ={userInfo}/>
       </div>
       <div className='feed'>
-        <Feed showProfile={setDisplayProfile}/>
+          <Profile1/>
         
       
       </div>
@@ -47,4 +47,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Profile

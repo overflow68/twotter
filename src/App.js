@@ -1,7 +1,7 @@
 import Home from "./pages/Home.js";
 import Landing from "./pages/Landing.js";
 import ProtectedRoute from "./pages/ProtectedRoute.js";
-import Profile from "./components/Profile.js";
+import Profile from "./pages/Profile.js";
 import Feed from "./components/Feed.js";
 import "./styles/app.css";
 import { UserAuthContextProvider } from "./AuthProvider";
@@ -17,23 +17,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Landing />} />
 
-              <Route
-                path="home"
-                element={
-                  <ProtectedRoute>
-                    <Home />
-                  </ProtectedRoute>
-                }
-              >
-                <Route
-                  path=":userId"
-                  element={
-                    <ProtectedRoute>
-                      <Profile />
-                    </ProtectedRoute>
-                  }
-                />
-              </Route>
+              <Route path="home"element={<ProtectedRoute> <Home /></ProtectedRoute>}/>
+
+                <Route path="profile/:userId" element={ <ProtectedRoute> <Profile /> </ProtectedRoute>}/>
+              
             </Routes>
           </UserInfoContextProvider>
         </UserAuthContextProvider>

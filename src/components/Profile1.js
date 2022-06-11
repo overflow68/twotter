@@ -49,10 +49,10 @@ setShowModal(!showModal)
         <div className='profile-info2'>{user1?user1.name:null}</div>
         <div className='profile-info1'>{user1?user1.username:null}</div>
         <EditProfile userId={params.userId} user={user1} toggleModal={toggleModal} showModal ={showModal}/>
-        <div className='bio'>My biography!</div>
+        <div className='bio'>{user1?user1.bio:null}</div>
         <div className='follow-stats'>
-          <div className='follow-stat'>{user1?user1.ImFollowing.length-1:null}Following</div>
-          <div className='follow-stat'>{user1?user1.MyFollowers.length-1:null}Followers</div>
+          <div className='follow-stat'><div className='follower-count'>{user1?user1.ImFollowing.length-1:null} </div> Following</div>
+          <div className='follow-stat'><div className='follower-count'>{user1?user1.MyFollowers.length-1:null}</div> Followers</div>
           </div>
     </div>
   )

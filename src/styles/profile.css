@@ -30,7 +30,7 @@
     font-weight: 1000;
 }
 .profile-info1{
-    color: rgb(145, 145, 145);
+    color: rgb(97, 97, 97);
     font-size: 0.9rem;
 }
 
@@ -58,6 +58,21 @@
 .profile{
     padding: 10px;
 }
-.follow-stats{
+
+.follow-stat{
+    margin-right: 10px;
     display: flex;
+}
+
+.follower-count{
+    font-weight: 1000;
+    margin-right: 5px;
+    color: black;
+}
+
+.follow-stats{
+    color: rgb(97, 97, 97);
+    display: flex;
+    font-size: 0.9rem;
+    margin-top: 15px;
 }
