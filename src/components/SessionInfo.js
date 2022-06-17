@@ -22,7 +22,7 @@ function SessionInfo({user}) {
     
     </div>
     <OutsideAlerter setD={setShowDropdown} dropdown = {showDropdown}>
-    {showDropdown? <div  onClick={logOut} className='logout-btn'>Logout @{user.username}</div>:null}
+    {showDropdown? <div  onClick={logOut} className='logout-btn'>Logout {user.username}</div>:null}
     </OutsideAlerter>
     </div>
   )

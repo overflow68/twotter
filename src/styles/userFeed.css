@@ -1,0 +1,53 @@
+.user-feed{
+    width: 100%;
+}
+
+.options-feed{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    height: 50px;
+    border-bottom: 1px solid rgb(236, 236, 236);
+}
+
+.feed-option{
+width: 50%;
+transition: 0.4s;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 0.85rem;
+}
+
+.selected-option{
+    font-weight: 1000;
+}
+
+.feed-option:hover{
+background-color: rgb(228, 228, 228);
+}
+
+.blue-bar-left{
+    background-color: rgb(14, 147, 255);
+    width: 50%;
+    height: 7px;
+    float: left;
+    top: -10px;
+    position: relative;
+    border-radius: 50px;
+}
+
+.blue-bar-right{
+    background-color: rgb(14, 147, 255);
+    width: 50%;
+    height: 7px;
+    float: right;
+    top: -10px;
+    position: relative;
+    border-radius: 50px;
+}
+
+.users-posts{
+    margin-top: 20px;
+}

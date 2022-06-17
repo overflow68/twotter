@@ -7,6 +7,7 @@ import '../styles/profile.css'
 import { useUserAuth } from "../AuthProvider";
 import FollowBtn from './FollowBtn';
 import { useUserInfoAuth } from '../userInfoProvider';
+import UserFeed from './UserFeed';
 
 function Profile() {
   let params = useParams();
@@ -44,16 +45,17 @@ setShowModal(!showModal)
             <div className='tw-pfp-cont2'><img className='tw-pfp2'  alt =""src='https://conteudo.imguol.com.br/c/esporte/96/2021/11/29/lionel-messi-atacante-do-psg-1638213496667_v2_4x3.jpg'></img>
             
             </div>
-            {user.uid === params.userId?<button onClick={toggleModal} className='edit-profile'>Edit Profile</button>:<FollowBtn params={params?params.userId:null} following ={userInfo?userInfo.ImFollowing:null}/>}
+            {user.uid === params.userId?<button onClick={toggleModal} className='edit-profile'>Edit Profile</button>:<FollowBtn  params={params?params.userId:null} following ={userInfo?userInfo.ImFollowing:null}/>}
         </div>
         <div className='profile-info2'>{user1?user1.name:null}</div>
         <div className='profile-info1'>{user1?user1.username:null}</div>
-        <EditProfile userId={params.userId} user={user1} toggleModal={toggleModal} showModal ={showModal}/>
+        <EditProfile setUser = {setUser} userId={params.userId} user={user1} toggleModal={toggleModal} showModal ={showModal}/>
         <div className='bio'>{user1?user1.bio:null}</div>
         <div className='follow-stats'>
           <div className='follow-stat'><div className='follower-count'>{user1?user1.ImFollowing.length-1:null} </div> Following</div>
           <div className='follow-stat'><div className='follower-count'>{user1?user1.MyFollowers.length-1:null}</div> Followers</div>
           </div>
+          <UserFeed/>
     </div>
   )
 }

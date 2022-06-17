@@ -27,6 +27,7 @@ function CreateTweet({ username, MyFollowers, name }) {
         body: tweet,
         username: username,
         name: name,
+        sender:user.uid,
         date: new Date().getTime(),
         target: [...MyFollowers],
         likes: 0,

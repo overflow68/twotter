@@ -4,7 +4,7 @@ import { db } from '../Firebase'
 import { doc, updateDoc } from "firebase/firestore";
 
 
-function EditProfile({userId,user,toggleModal,showModal}) {
+function EditProfile({setUser,userId,user,toggleModal,showModal}) {
 const[bioCharacters,setBioChars] = useState(0)
 const[nameCharacters,setNameChars] = useState(0)
 const[isLoading, setLoading]= useState(true)
@@ -36,7 +36,12 @@ await updateDoc(userRef, {
   bio:bioChars.current.value,
   name:nameChars.current.value
 });
-
+setUser(prevState => ({
+  ...prevState,
+  bio:bioChars.current.value,
+  name:nameChars.current.value
+}));
+toggleModal()
 }
 
 

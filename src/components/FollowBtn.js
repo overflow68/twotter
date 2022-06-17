@@ -29,6 +29,7 @@ await updateDoc(myRef, {
 await updateDoc(myRef, {
   ImFollowing: arrayRemove(params)
 });
+
   }
 
 
