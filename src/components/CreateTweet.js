@@ -15,7 +15,7 @@ import uniqid from "uniqid";
 import { useUserAuth } from "../AuthProvider";
 import OutsideAlerter from "../hooks/OutsideAlerter";
 
-function CreateTweet({ username, MyFollowers, name }) {
+function CreateTweet({verified, username, MyFollowers, name }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [tweet, setTweet] = useState("");
   const { user } = useUserAuth();
@@ -27,6 +27,7 @@ function CreateTweet({ username, MyFollowers, name }) {
         body: tweet,
         username: username,
         name: name,
+        verified: verified,
         sender:user.uid,
         date: new Date().getTime(),
         target: [...MyFollowers],

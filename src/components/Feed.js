@@ -46,10 +46,10 @@ function Feed() {
 
   return (
     <div>
-      <CreateTweet username={userInfo.username} name={userInfo.name} MyFollowers={userInfo.MyFollowers} />
+      <CreateTweet verified={userInfo.verified} username={userInfo.username} name={userInfo.name} MyFollowers={userInfo.MyFollowers} />
       {!isLoading?tweets.map((item) => {
         return <Tweet item={item} />;
-      }):<div>stuff's loading</div>}
+      }):<div>Loading</div>}
     </div>
   );
 }

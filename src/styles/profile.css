@@ -77,3 +77,13 @@
     font-size: 0.9rem;
     margin-top: 15px;
 }
+
+.verified{
+    margin-left: 5px;
+    color: rgb(14, 147, 255);
+}
+
+.user-verif{
+    display: flex;
+    align-items: center;
+}

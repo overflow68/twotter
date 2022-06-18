@@ -8,6 +8,7 @@ import { useUserAuth } from "../AuthProvider";
 import FollowBtn from './FollowBtn';
 import { useUserInfoAuth } from '../userInfoProvider';
 import UserFeed from './UserFeed';
+import {MdVerified} from 'react-icons/md'
 
 function Profile() {
   let params = useParams();
@@ -47,7 +48,7 @@ setShowModal(!showModal)
             </div>
             {user.uid === params.userId?<button onClick={toggleModal} className='edit-profile'>Edit Profile</button>:<FollowBtn  params={params?params.userId:null} following ={userInfo?userInfo.ImFollowing:null}/>}
         </div>
-        <div className='profile-info2'>{user1?user1.name:null}</div>
+        <div className='profile-info2'><div className='user-verif'>{user1?user1.name:null}{user1?user1.verified?<MdVerified className='verified'/>:null:null}</div></div>
         <div className='profile-info1'>{user1?user1.username:null}</div>
         <EditProfile setUser = {setUser} userId={params.userId} user={user1} toggleModal={toggleModal} showModal ={showModal}/>
         <div className='bio'>{user1?user1.bio:null}</div>

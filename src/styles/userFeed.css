@@ -31,9 +31,9 @@ background-color: rgb(228, 228, 228);
 .blue-bar-left{
     background-color: rgb(14, 147, 255);
     width: 50%;
-    height: 7px;
+    height: 3px;
     float: left;
-    top: -10px;
+    top: -3px;
     position: relative;
     border-radius: 50px;
 }
@@ -41,9 +41,9 @@ background-color: rgb(228, 228, 228);
 .blue-bar-right{
     background-color: rgb(14, 147, 255);
     width: 50%;
-    height: 7px;
+    height: 3px;
     float: right;
-    top: -10px;
+    top: -3px;
     position: relative;
     border-radius: 50px;
 }

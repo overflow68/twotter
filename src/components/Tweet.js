@@ -4,14 +4,33 @@ import {FaRegComment} from 'react-icons/fa'
 import {BsShare} from 'react-icons/bs'
 import {AiOutlineHeart} from 'react-icons/ai'
 import { useNavigate } from "react-router-dom";
+import {MdVerified} from 'react-icons/md'
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../Firebase";
 
 
-function Tweet(props) {
+function Tweet({item}) {
  const[timeElapsed,setTimeElapsed] = useState()
+ const[user,setUser] = useState()
  let navigate = useNavigate();
 
+ useEffect(()=>{
+   const getUser =async()=>{
+     const docRef = doc(db, "users", item.sender);
+  const docSnap = await getDoc(docRef);
+  
+  if (docSnap.exists()) {
+    setUser(docSnap.data());
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
+   }
+  getUser()
+ },[item])
+
  const goToProfile = ()=>{
-  navigate(`/profile/${props.item.target[0]}`);
+  navigate(`/profile/${item.target[0]}`);
   /*console.log(window.location.href)*/
 
  }
@@ -19,7 +38,7 @@ function Tweet(props) {
 
  useEffect(()=>{
   var d1 = new Date().getTime();
-  var diff = Math.abs(d1-props.item.date);
+  var diff = Math.abs(d1-item.date);
   const converse = (milliseconds)=>{
     let seconds = milliseconds/1000;
     let minutes = seconds/60;
@@ -41,21 +60,22 @@ function Tweet(props) {
  }
  
 setTimeElapsed(converse(diff))
- },[props])
+ },[item])
   return (
     <div className='tweet'>
       <div className='wrap-pfp-twt'>
       <div onClick={goToProfile} className='tw-pfp-cont1'><img  src='https://conteudo.imguol.com.br/c/esporte/96/2021/11/29/lionel-messi-atacante-do-psg-1638213496667_v2_4x3.jpg' className='tw-pfp' alt=""></img></div>
     <div>
-      <div className='author-id'><div className='author-id1'>{props.item.name}</div> <div className='usernameac'> {" "+props.item.username}</div> <div>•</div> <div className='time-elapsed'>{timeElapsed}</div></div>
-      <div className='actual-tweet'>{props.item.body}</div>
+      <div className='author-id'><div onClick={goToProfile} className='author-id1'>{user?user.name:null}{user?user.verified?<MdVerified className='verified'/>:null:null}</div> <div className='usernameac'> {" "+item.username}</div> <div>•</div> <div className='time-elapsed'>{timeElapsed}</div></div>
+      
     </div>
     
     </div>
+    <div className='actual-tweet'>{item.body}</div>
     <div className='interaction-bar'>
-      <div className='bar-item bar-item1'><FaRegComment className='back-color back-color1' size={15}/>{props.item.comments.length}</div>
-      <div className='bar-item bar-item3'><BsShare className='back-color back-color3' size={15}/>{props.item.shares}</div>
-      <div className='bar-item bar-item2'><AiOutlineHeart className='back-color back-color2' size={15}/>{props.item.likes}</div>
+      <div className='bar-item bar-item1'><FaRegComment className='back-color back-color1' size={15}/>{item.comments.length}</div>
+      <div className='bar-item bar-item3'><BsShare className='back-color back-color3' size={15}/>{item.shares}</div>
+      <div className='bar-item bar-item2'><AiOutlineHeart className='back-color back-color2' size={15}/>{item.likes}</div>
     </div>
     </div>
   )

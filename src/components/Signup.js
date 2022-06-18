@@ -15,6 +15,14 @@ function Signup({toggle,showSign}) {
   const inputPassword= useRef(null);
   const {signUp} = useUserAuth()
 
+  
+
+  const handleChange = event => {
+    const result = event.target.value.replace(/[^a-zA-Z ]/g, "");
+
+    inputUserName.current.value = result
+  };
+
   const usersRef = collection(db, "users");
 
 
@@ -57,6 +65,7 @@ function Signup({toggle,showSign}) {
         name:inputName.current.value,
         username: "@"+inputUserName.current.value,
         bio:"",
+        verified:false,
         MyFollowers: [],
         ImFollowing: [],
         posts:[]
@@ -77,9 +86,9 @@ function Signup({toggle,showSign}) {
       Nome
       <input ref={inputName} onClick={toggleTrue}  className='input1' ></input>
     </div>
-    <div onClick={focusField} className={isUserNameClicked? "focused":"input"}>
-      Nome
-      <input ref={inputUserName} onClick={toggleTrue}  className='input1' ></input>
+    <div  onClick={focusField} className={isUserNameClicked? "focused":"input"}>
+      Username
+      <input onChange={handleChange} ref={inputUserName} onClick={toggleTrue}  className='input1' ></input>
     </div>
     <div onClick={focusFieldEmail} className={isEmailClicked? "focused":"input"}>
       E-mail
