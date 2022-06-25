@@ -92,7 +92,6 @@ textarea:focus{
 .tw-options-cont{
     display: flex;
     justify-content: space-around;
-    border: 1px solid rgb(243, 243, 243);
     padding: 10px;
 }
 

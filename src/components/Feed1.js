@@ -26,7 +26,7 @@ function Feed() {
     
     if (!isLoading) {
       
-        const q = query(collection(db, "Twoots"),where("target","array-contains",params.userId),orderBy("date","asc"));
+        const q = query(collection(db, "Twoots"),where("sender","==",params.userId),orderBy("date","asc"));
         const unsub = onSnapshot(q, (querySnapshot) => {
           const twts = [];
           
@@ -49,7 +49,7 @@ function Feed() {
     <div className="users-posts">
       {!isLoading?tweets.map((item) => {
         return <Tweet item={item} />;
-      }):<div>stuff's loading</div>}
+      }):<div>loading</div>}
     </div>
   );
 }

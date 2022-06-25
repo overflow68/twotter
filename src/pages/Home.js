@@ -10,6 +10,7 @@ import { IconContext } from "react-icons";
 import SessionInfo from '../components/SessionInfo'
 import useWindowDimensions from '../styles/windowDimensions'
 import { useNavigate } from "react-router-dom";
+import Trends from '../components/Trends'
 
 
 
@@ -17,7 +18,7 @@ function Home() {
   const{userInfo} = useUserInfoAuth()
   const {user} = useUserAuth()
   const{width} = useWindowDimensions()
-  const[displayProfile,setDisplayProfile] = useState(false)
+  
   const navigate = useNavigate()
   const goToProfile = ()=>{
     navigate(`/profile/${user.uid}`);
@@ -44,12 +45,14 @@ function Home() {
         <SessionInfo user ={userInfo}/>
       </div>
       <div className='feed'>
-        <Feed showProfile={setDisplayProfile}/>
+        <Feed/>
         
       
       </div>
       
-      <div className='trends'>3</div>
+      <div className='trends'>
+        <Trends/>
+      </div>
     </div>
   )
 }
