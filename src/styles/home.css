@@ -3,7 +3,7 @@
 .cont-all{
     margin: 0 auto;
     display: flex;
-    width: 1200px;
+    width: 1000px;
     justify-content:space-around;
 }
 
@@ -15,12 +15,14 @@
   position: sticky;
   top: 0;
   align-self: flex-start;
+
   
   
 
 }
 .feed{
-    width: 650px;
+    width: 600px;
+  
     
 }
 .trends{
@@ -28,6 +30,7 @@
     position: sticky;
   top: 0;
   align-self: flex-start;
+ 
 }
 
 ul{
@@ -149,13 +152,13 @@ li{
 
 
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
     .menu{
         width: 50px;
         
     }
     .cont-all{
-        width:1000px ;
+        width:800px;
     }
     ul{
         margin: 0;
@@ -181,24 +184,25 @@ li{
 
 }
 
-@media screen and (max-width: 1000px) {
-  .trends{
-      display: none;
-  }
-  .cont-all{
-      width: 700px;
-  }
+@media screen and (max-width: 850px) {
+    .trends{
+        max-width: 250px;
+       
+    }
+    .cont-all{
+        width: 750px;
+    }
   
 }
 
-@media screen and (max-width: 700px) {
-    .cont-all{
-        width: 100%;
+@media screen and (max-width: 795px) {
+    .trends{
+       display: none;
+       
     }
-   .feed{
-       max-width: 650px;
-   }
-   
+    .cont-all{
+        width: 500px;
+    }
   }
 
 

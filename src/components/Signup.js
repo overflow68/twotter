@@ -18,9 +18,12 @@ function Signup({toggle,showSign}) {
   
 
   const handleChange = event => {
-    const result = event.target.value.replace(/[^a-zA-Z ]/g, "");
+    if (event.which !==32){
+      const result = event.target.value.replace(/[^A-Z0-9]/ig, "_");
 
     inputUserName.current.value = result
+  }
+    
   };
 
   const usersRef = collection(db, "users");
@@ -88,7 +91,7 @@ function Signup({toggle,showSign}) {
     </div>
     <div  onClick={focusField} className={isUserNameClicked? "focused":"input"}>
       Username
-      <input onChange={handleChange} ref={inputUserName} onClick={toggleTrue}  className='input1' ></input>
+      <input maxLength={25} onKeyDown={handleChange} ref={inputUserName} onClick={toggleTrue}  className='input1' ></input>
     </div>
     <div onClick={focusFieldEmail} className={isEmailClicked? "focused":"input"}>
       E-mail

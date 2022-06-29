@@ -37,6 +37,19 @@
     margin-top: 36px;
   }
 
+  .tw-pfp-cont23 {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 10px;
+}
+
+  .click-username{
+    overflow: hidden;
+    flex: 0.7;
+  }
+
 @media screen and (max-width: 1200px) {
   .click-username{
     display: none;

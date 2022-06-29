@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef,useEffect} from 'react'
 import '../styles/trends.css'
 import {FiSearch} from 'react-icons/fi'
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -8,8 +8,21 @@ import OutsideAlerter from '../hooks/OutsideAlerter';
 
 function Trends() {
     const[showResults,setShowResults] = useState(false)
+    const [data,setData] = useState([])
     const [results,setResults] = useState([])
+    useEffect(()=>{
+      const getData = async()=>{
+        const q = query(collection(db, "users"));
+        const resultsCopy = []
 
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  resultsCopy.push(doc.data())
+});
+setData(resultsCopy)
+    }
+    getData()
+    })
     let inputRef = useRef(null)
     
     const toggleFocus = ()=>{
@@ -19,16 +32,15 @@ function Trends() {
         setShowResults(false)
     }
 
-    const getResults = async()=>{
-        console.log(results)
-        const q = query(collection(db, "users"), where("name", "==", inputRef.current.value));
-        const resultsCopy = []
+    const getResults = ()=>{
+        let filteredResults = data.filter(item=> {
+          let nameToLower = item.name.toLowerCase()
+          let inputToLower = inputRef.current.value.toLowerCase()
+          return nameToLower.includes(inputToLower) && inputToLower!==""
+        })
+        setResults(filteredResults)
 
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-  resultsCopy.push(doc.data())
-});
-setResults(resultsCopy)
+        
     }
 
   return (

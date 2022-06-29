@@ -17,7 +17,7 @@ function SessionInfo({user}) {
   return (
       <div onClick={handleClick} className='session-cont'>
     <div className='session-info'>
-        <div className='tw-pfp-cont'><img  src='https://conteudo.imguol.com.br/c/esporte/96/2021/11/29/lionel-messi-atacante-do-psg-1638213496667_v2_4x3.jpg' className='tw-pfp' alt=""></img></div>
+        <div className='tw-pfp-cont23'><img  src='https://conteudo.imguol.com.br/c/esporte/96/2021/11/29/lionel-messi-atacante-do-psg-1638213496667_v2_4x3.jpg' className='tw-pfp' alt=""></img></div>
     <div className='click-username'>{user.username}</div><div className='dots'><BiDotsHorizontalRounded onClick={handleClick} size={25}/></div>
     
     </div>

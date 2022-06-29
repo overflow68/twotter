@@ -15,7 +15,7 @@ const nameChars = useRef(null)
 useEffect(()=>{
   if (user!==undefined){
   setLoading(false)
-  console.log("user: ",user)}
+  }
 },[user])
 
 useEffect(()=>{

@@ -37,9 +37,9 @@ function Home() {
       <IconContext.Provider value={{className:"react-icons"}}>
         <ul>
           <li className='menu-option'><GrTwitter  color='rgb(14, 147, 255)' size={30}/></li>
-          <li onClick={goHome} className='menu-option'><div className='hover-wrap'><AiFillHome size={23} ></AiFillHome>{width > 1200? "Home":null}</div></li>
-          <li className='menu-option'><div className='hover-wrap'><BiMessageAltDetail size={23}></BiMessageAltDetail>{width > 1200? "Messages":null}</div></li>
-          <li onClick={goToProfile} className='menu-option'><div className='hover-wrap'><AiOutlineUser size={23}></AiOutlineUser>{width> 1200? "Profile":null}</div></li>
+          <li onClick={goHome} className='menu-option'><div className='hover-wrap'><AiFillHome size={23} ></AiFillHome>{width > 1000? "Home":null}</div></li>
+          <li className='menu-option'><div className='hover-wrap'><BiMessageAltDetail size={23}></BiMessageAltDetail>{width > 1000? "Messages":null}</div></li>
+          <li onClick={goToProfile} className='menu-option'><div className='hover-wrap'><AiOutlineUser size={23}></AiOutlineUser>{width> 1000? "Profile":null}</div></li>
         </ul>
         </IconContext.Provider>
         <SessionInfo user ={userInfo}/>
