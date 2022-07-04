@@ -79,6 +79,10 @@
     color: rgb(25, 218, 0);
 }
 
+.liked-color{
+    color: rgb(218, 0, 0);
+}
+
 .usernameac{
     color: rgb(145, 145, 145);
     margin-left: 5px;

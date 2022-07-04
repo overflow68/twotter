@@ -71,7 +71,8 @@ function Signup({toggle,showSign}) {
         verified:false,
         MyFollowers: [],
         ImFollowing: [],
-        posts:[]
+        posts:[],
+        likedPosts:[]
       });
       })
       

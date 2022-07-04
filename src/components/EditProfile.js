@@ -31,7 +31,7 @@ useEffect(()=>{
 const saveChanges = async() =>{
   const userRef = doc(db, "users", userId);
 
-// Set the "capital" field of the city 'DC'
+
 await updateDoc(userRef, {
   bio:bioChars.current.value,
   name:nameChars.current.value

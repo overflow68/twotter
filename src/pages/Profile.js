@@ -17,7 +17,6 @@ import {useUserAuth} from '../AuthProvider'
 function Profile() {
   const{userInfo} = useUserInfoAuth()
   const{width} = useWindowDimensions()
-  const[displayProfile,setDisplayProfile] = useState(false)
   const {user} = useUserAuth()
   const navigate = useNavigate()
   const goToProfile = ()=>{
@@ -27,7 +26,7 @@ function Profile() {
    }
   const goHome = ()=>{
     navigate('/home')
-    setDisplayProfile(false)
+    
   }
   
 

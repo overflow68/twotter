@@ -24,6 +24,7 @@ function CreateTweet({verified, username, MyFollowers, name }) {
     if (tweet.length > 4) {
       let id = uniqid();
       await setDoc(doc(db, "Twoots", id), {
+        id:id,
         body: tweet,
         username: username,
         name: name,
@@ -31,7 +32,7 @@ function CreateTweet({verified, username, MyFollowers, name }) {
         sender:user.uid,
         date: new Date().getTime(),
         target: [...MyFollowers],
-        likes: 0,
+        likes:0,
         shares: 0,
         comments: [],
       });
