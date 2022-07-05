@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Tweet from "./Tweet";
 import CreateTweet from "./CreateTweet";
-import { onSnapshot,collection,where, query, orderBy, getDoc, doc } from "firebase/firestore";
+import { onSnapshot,collection,where, query, orderBy,limit } from "firebase/firestore";
 import { db } from "../Firebase";
 import {useUserInfoAuth} from '../userInfoProvider'
+import uniqid from 'uniqid'
 
 
 function Feed() {
   const{user,userInfo} = useUserInfoAuth()
   const [tweets, setTweets] = useState([]);
   const [isLoading,setLoading] = useState(true)
-  
 
+  
   useEffect(()=>{
+
     if(userInfo.posts !== undefined && user!==undefined){
       setLoading(false)
     }
@@ -25,7 +27,7 @@ function Feed() {
     
     if (!isLoading) {
       
-        const q = query(collection(db, "Twoots"),where("target","array-contains",userInfo.ImFollowing[0]),orderBy("date","asc"));
+        const q = query(collection(db, "Twoots"),where("target","array-contains",userInfo.ImFollowing[0]),orderBy("date","desc"),limit(15));
         const unsub = onSnapshot(q, (querySnapshot) => {
           const twts = [];
           
@@ -35,7 +37,7 @@ function Feed() {
              
               
           });
-          twts.reverse()
+          
           setTweets(twts)
           
         });
@@ -45,10 +47,10 @@ function Feed() {
   }, [isLoading]);
 
   return (
-    <div>
+    <div >
       <CreateTweet verified={userInfo.verified} username={userInfo.username} name={userInfo.name} MyFollowers={userInfo.MyFollowers} />
       {!isLoading?tweets.map((item) => {
-        return <Tweet likedPosts={userInfo.likedPosts} item={item} />;
+        return <Tweet key ={uniqid()}addCommentInfo={userInfo} likedPosts={userInfo.likedPosts} item={item} />;
       }):<div>Loading</div>}
     </div>
   );

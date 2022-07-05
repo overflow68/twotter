@@ -4,6 +4,7 @@ import { onSnapshot,collection,where, query, orderBy,getDocs} from "firebase/fir
 import { db } from "../Firebase";
 import {useUserInfoAuth} from '../userInfoProvider'
 import {useParams} from 'react-router-dom'
+import uniqid from 'uniqid'
 
 
 function Feed() {
@@ -42,7 +43,7 @@ setTweets(twts)
   return (
     <div className="users-posts">
       {!isLoading?tweets.map((item) => {
-        return <Tweet likedPosts={userInfo.likedPosts} item={item} />;
+        return <Tweet key={uniqid()} addCommentInfo={userInfo} likedPosts={userInfo.likedPosts} item={item} />;
       }):<div>loading</div>}
     </div>
   );

@@ -1,0 +1,25 @@
+.submit-tw12{
+    background-color:rgb(14, 147, 255) ;
+    border-radius: 50px;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px;
+    height: 30px;
+    margin: 10px;
+
+}
+.btn-cont{
+    display: flex;
+    justify-content: right;
+}
+
+.tweet-reply{
+    padding-bottom: 10px;
+    padding-top: 10px;
+        border: 1px solid rgb(243, 243, 243);
+}
+
+.comments-cont-hide{
+    display: none;
+}

@@ -82,7 +82,7 @@ textarea:focus{
 
 .tw-input{
     margin-top: 26px;
-    flex: 2;
+    flex: 1;
     border: none;
     font-size: 1rem;
 }

@@ -9,21 +9,31 @@ import {MdVerified} from 'react-icons/md'
 import { doc, getDoc, updateDoc,arrayUnion,arrayRemove, increment, decrement } from "firebase/firestore";
 import { db } from "../Firebase";
 import { useUserAuth } from "../AuthProvider";
+import Comment from './Comment'
+import Reply from './Reply'
+import {BsDot} from 'react-icons/bs'
 
 
-function Tweet({likedPosts,item}) { 
+function Tweet({addCommentInfo,likedPosts,item}) { 
   const checkIfLiked = ()=>{
   if (likedPosts.includes(item.id)){
     return true
   }else return false
  } 
- const[likes,setLikes] = useState(item.likes)
- const[liked,setLiked] = useState(checkIfLiked)
+ const[likes,setLikes] = useState(0)
+ const[liked,setLiked] = useState(false)
  const[user1,setUser] = useState()
- const{user} = useUserAuth()
+ const[showComments,setShowComments] = useState(false)
+ const{user} = useUserAuth() 
  let navigate = useNavigate();
 
+ const toggleComments = ()=>{
+  setShowComments(!showComments)
+ }
+
  const removeLike = async()=>{
+  setLiked(false)
+setLikes(likes-1)
   const userRef = doc(db, "users", user.uid);
 
 await updateDoc(userRef, {
@@ -34,11 +44,12 @@ const tweetRef = doc(db, "Twoots", item.id);
 await updateDoc(tweetRef, {
   likes: increment(-1)
 });
-setLiked(false)
-setLikes(likes-1)
+
  }
 
  const like = async()=>{
+  setLiked(true)
+setLikes(likes+1)
   const userRef = doc(db, "users", user.uid);
 
 await updateDoc(userRef, {
@@ -49,13 +60,19 @@ const tweetRef = doc(db, "Twoots", item.id);
 await updateDoc(tweetRef, {
   likes: increment(1)
 });
-setLiked(true)
-setLikes(likes+1)
+
  }
 
 
- useEffect(()=>{
 
+ useEffect(()=>{
+  const checkIfLiked = ()=>{
+    if (likedPosts.includes(item.id)){
+      return true
+    }else return false
+   } 
+   setLiked(checkIfLiked)
+   setLikes(item.likes)
    const getUser =async()=>{
      const docRef = doc(db, "users", item.sender);
   const docSnap = await getDoc(docRef);
@@ -67,7 +84,7 @@ setLikes(likes+1)
   }
    }
   getUser()
- },[item])
+ },[item,likedPosts])
 
  const goToProfile = ()=>{
   navigate(`/profile/${item.target[0]}`);
@@ -106,16 +123,20 @@ return converse(diff)
       <div className='wrap-pfp-twt'>
       <div onClick={goToProfile} className='tw-pfp-cont1'><img  src='https://conteudo.imguol.com.br/c/esporte/96/2021/11/29/lionel-messi-atacante-do-psg-1638213496667_v2_4x3.jpg' className='tw-pfp' alt=""></img></div>
     <div>
-      <div className='author-id'><div onClick={goToProfile} className='author-id1'>{user1?user1.name:null}{user1?user1.verified?<MdVerified className='verified'/>:null:null}</div> <div className='usernameac'> {" "+item.username}</div> <div>•</div> <div className='time-elapsed'>{tweetAge()}</div></div>
+      <div className='author-id'><div onClick={goToProfile} className='author-id1'>{user1?user1.name:null}{user1?user1.verified?<MdVerified className='verified'/>:null:null}</div> <div className='usernameac'> {" "+item.username}</div> <div><BsDot color="rgb(145, 145, 145)"/></div> <div className='time-elapsed'>{tweetAge()}</div></div>
       
     </div>
     
     </div>
     <div className='actual-tweet'>{item.body}</div>
     <div className='interaction-bar'>
-      <div className='bar-item bar-item1'><FaRegComment className='back-color back-color1' size={15}/>{item.comments.length}</div>
+      <div className='bar-item bar-item1'><FaRegComment onClick={toggleComments} className='back-color back-color1' size={15}/>{item.comments.length}</div>
       <div className='bar-item bar-item3'><BsShare className='back-color back-color3' size={15}/>{item.shares}</div>
       <div className='bar-item bar-item2'>{liked?<AiFillHeart onClick={removeLike} className='back-color liked-color back-color2' size={15}/>:<AiOutlineHeart onClick={like} className='back-color back-color2' size={15}/>}{likes}</div>
+    </div>
+    <div className={showComments?"comments-cont":"comments-cont-hide"}>
+    <Reply commenterInfo={addCommentInfo} tweetId={item.id}/>
+    {item.comments.map(comment=>{return <Comment data={comment}/>})}
     </div>
     </div>
   )

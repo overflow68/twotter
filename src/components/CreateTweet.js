@@ -105,7 +105,7 @@ function CreateTweet({verified, username, MyFollowers, name }) {
             maxLength={280}
             data-min-rows="2"
             className="tw-input autoExpand"
-            placeholder="O que tens em mente?"
+            placeholder="What's on your mind?"
           ></textarea>
         </div>
         <div className="tw-options-cont">
@@ -114,7 +114,7 @@ function CreateTweet({verified, username, MyFollowers, name }) {
             <AiOutlinePicture />
           </div>
           <button onClick={addTweet} className="submit-tw">
-            Twoot
+            Tweet
           </button>
         </div>
         <OutsideAlerter setD={setShowDropdown}>

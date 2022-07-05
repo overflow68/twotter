@@ -18,6 +18,10 @@ function Home() {
   const{userInfo} = useUserInfoAuth()
   const {user} = useUserAuth()
   const{width} = useWindowDimensions()
+  const handleScroll = (e) => {
+    const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    console.log(bottom)
+  }
   
   const navigate = useNavigate()
   const goToProfile = ()=>{
@@ -32,7 +36,7 @@ function Home() {
   
 
   return (
-    <div className='cont-all'>
+    <div onScroll={handleScroll} className='cont-all'>
       <div className='menu'>
       <IconContext.Provider value={{className:"react-icons"}}>
         <ul>
@@ -44,7 +48,7 @@ function Home() {
         </IconContext.Provider>
         <SessionInfo user ={userInfo}/>
       </div>
-      <div className='feed'>
+      <div  className='feed'>
         <Feed/>
         
       
