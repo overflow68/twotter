@@ -15,7 +15,7 @@ import uniqid from "uniqid";
 import { useUserAuth } from "../AuthProvider";
 import OutsideAlerter from "../hooks/OutsideAlerter";
 
-function CreateTweet({verified, username, MyFollowers, name }) {
+function CreateTweet({pfpURL,verified, username, MyFollowers, name }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [tweet, setTweet] = useState("");
   const { user } = useUserAuth();
@@ -27,6 +27,7 @@ function CreateTweet({verified, username, MyFollowers, name }) {
         id:id,
         body: tweet,
         username: username,
+        pfpURL:pfpURL,
         name: name,
         verified: verified,
         sender:user.uid,
@@ -94,7 +95,7 @@ function CreateTweet({verified, username, MyFollowers, name }) {
         <div className="info-cont">
           <div className="tw-pfp-cont">
             <img
-              src="https://conteudo.imguol.com.br/c/esporte/96/2021/11/29/lionel-messi-atacante-do-psg-1638213496667_v2_4x3.jpg"
+              src={pfpURL}
               className="tw-pfp"
               alt=""
             ></img>

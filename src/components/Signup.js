@@ -68,6 +68,7 @@ function Signup({toggle,showSign}) {
         name:inputName.current.value,
         username: "@"+inputUserName.current.value,
         bio:"",
+        pfpURL:"https://pbs.twimg.com/media/FGCpQkBXMAIqA6d.jpg:large",
         verified:false,
         MyFollowers: [],
         ImFollowing: [],

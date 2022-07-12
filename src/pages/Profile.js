@@ -11,6 +11,7 @@ import useWindowDimensions from '../styles/windowDimensions'
 import { useNavigate } from "react-router-dom";
 import Trends from '../components/Trends'
 import {useUserAuth} from '../AuthProvider'
+import {getDownloadURL} from 'firebase/storage'
 
 
 

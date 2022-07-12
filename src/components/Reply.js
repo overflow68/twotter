@@ -10,6 +10,8 @@ function Reply({commenterInfo,tweetId}) {
 
       const addComment = async()=>{
         let commentObj = {
+        id: commenterInfo.ImFollowing[0],
+        pfpURL:commenterInfo.pfpURL,
         body: tweet,
         username: commenterInfo.username,
         name: commenterInfo.name,
@@ -29,7 +31,7 @@ await updateDoc(tweetRef, {
         <div className="info-cont">
           <div className="tw-pfp-cont">
             <img
-              src="https://conteudo.imguol.com.br/c/esporte/96/2021/11/29/lionel-messi-atacante-do-psg-1638213496667_v2_4x3.jpg"
+              src={commenterInfo.pfpURL}
               className="tw-pfp"
               alt=""
             ></img>

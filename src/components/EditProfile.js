@@ -1,7 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react'
 import '../styles/editProfile.css'
-import { db } from '../Firebase'
+import { db, storage} from '../Firebase'
 import { doc, updateDoc } from "firebase/firestore";
+import { uploadBytes,getDownloadURL } from 'firebase/storage';
+import {ref} from 'firebase/storage'
+
 
 
 function EditProfile({setUser,userId,user,toggleModal,showModal}) {
@@ -9,8 +12,39 @@ const[bioCharacters,setBioChars] = useState(0)
 const[nameCharacters,setNameChars] = useState(0)
 const[isLoading, setLoading]= useState(true)
 
+
 const bioChars = useRef(null)
 const nameChars = useRef(null)
+const pfpRef = useRef(null)
+
+
+
+const handleChange = (e) =>{
+  if ( e.target.files[0]){
+    uploadImg(e.target.files[0])
+  }
+}
+
+const uploadImg =(file)=>{
+  const pfpRef = ref(storage, `images/${userId}.jpg`)
+  uploadBytes(pfpRef,file).then((snapshot)=>{
+    console.log("uploaded")
+  }).then(
+    getDownloadURL(pfpRef)
+  .then((url) => {
+   const userRef = doc(db,"users",userId);
+
+   updateDoc(userRef,{
+    pfpURL:url
+   })
+
+  })
+  )
+
+}
+
+
+
 
 useEffect(()=>{
   if (user!==undefined){
@@ -30,8 +64,6 @@ useEffect(()=>{
 
 const saveChanges = async() =>{
   const userRef = doc(db, "users", userId);
-
-
 await updateDoc(userRef, {
   bio:bioChars.current.value,
   name:nameChars.current.value
@@ -41,6 +73,7 @@ setUser(prevState => ({
   bio:bioChars.current.value,
   name:nameChars.current.value
 }));
+
 toggleModal()
 }
 
@@ -62,6 +95,7 @@ const updateBioChars = ()=>{
             <button className='save' onClick={saveChanges}>Save</button>
             
         </div>
+        <div className='input2'><input ref={pfpRef} onChange={handleChange} type= "file"></input></div>
         <div className="input2">
       <div className='pointers'>
         <div className='some-cont'><div className='label-name'>Name</div></div>

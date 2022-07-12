@@ -56,7 +56,7 @@ return converse(diff)
   return (
     <div className='tweet-reply'>
       <div className='wrap-pfp-twt'>
-      <div  className='tw-pfp-cont1'><img  src='https://conteudo.imguol.com.br/c/esporte/96/2021/11/29/lionel-messi-atacante-do-psg-1638213496667_v2_4x3.jpg' className='tw-pfp' alt=""></img></div>
+      <div  className='tw-pfp-cont1'><img  src={data.pfpURL} className='tw-pfp' alt=""></img></div>
     <div>
       <div className='author-id'><div  className='author-id1'>{data.name}</div> <div className='usernameac'>{data.username}</div> <div><BsDot color="rgb(145, 145, 145)"/></div> <div className='time-elapsed'>{tweetAge()}</div></div>
       

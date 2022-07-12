@@ -48,7 +48,7 @@ function Feed() {
 
   return (
     <div >
-      <CreateTweet verified={userInfo.verified} username={userInfo.username} name={userInfo.name} MyFollowers={userInfo.MyFollowers} />
+      <CreateTweet pfpURL = {userInfo.pfpURL} verified={userInfo.verified} username={userInfo.username} name={userInfo.name} MyFollowers={userInfo.MyFollowers} />
       {!isLoading?tweets.map((item) => {
         return <Tweet key ={uniqid()}addCommentInfo={userInfo} likedPosts={userInfo.likedPosts} item={item} />;
       }):<div>Loading</div>}

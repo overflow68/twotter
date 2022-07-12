@@ -22,7 +22,7 @@ function Tweet({addCommentInfo,likedPosts,item}) {
  } 
  const[likes,setLikes] = useState(0)
  const[liked,setLiked] = useState(false)
- const[user1,setUser] = useState()
+ const[user1,setUser] = useState("")
  const[showComments,setShowComments] = useState(false)
  const{user} = useUserAuth() 
  let navigate = useNavigate();
@@ -66,13 +66,7 @@ await updateDoc(tweetRef, {
 
 
  useEffect(()=>{
-  const checkIfLiked = ()=>{
-    if (likedPosts.includes(item.id)){
-      return true
-    }else return false
-   } 
-   setLiked(checkIfLiked)
-   setLikes(item.likes)
+  if (user1===""){
    const getUser =async()=>{
      const docRef = doc(db, "users", item.sender);
   const docSnap = await getDoc(docRef);
@@ -83,8 +77,16 @@ await updateDoc(tweetRef, {
     
   }
    }
-  getUser()
- },[item,likedPosts])
+  getUser()}
+  const checkIfLiked = ()=>{
+    if (likedPosts.includes(item.id)){
+      return true
+    }else return false
+   } 
+   setLiked(checkIfLiked)
+   setLikes(item.likes)
+   
+ },[item,likedPosts,user1])
 
  const goToProfile = ()=>{
   navigate(`/profile/${item.target[0]}`);
@@ -121,7 +123,7 @@ return converse(diff)
   return (
     <div className='tweet'>
       <div className='wrap-pfp-twt'>
-      <div onClick={goToProfile} className='tw-pfp-cont1'><img  src='https://conteudo.imguol.com.br/c/esporte/96/2021/11/29/lionel-messi-atacante-do-psg-1638213496667_v2_4x3.jpg' className='tw-pfp' alt=""></img></div>
+      <div onClick={goToProfile} className='tw-pfp-cont1'><img  src={item.pfpURL} className='tw-pfp' alt=""></img></div>
     <div>
       <div className='author-id'><div onClick={goToProfile} className='author-id1'>{user1?user1.name:null}{user1?user1.verified?<MdVerified className='verified'/>:null:null}</div> <div className='usernameac'> {" "+item.username}</div> <div><BsDot color="rgb(145, 145, 145)"/></div> <div className='time-elapsed'>{tweetAge()}</div></div>
       

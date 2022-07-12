@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth";
 import  {getFirestore} from 'firebase/firestore'
+import {getStorage, ref} from 'firebase/storage'
 
 export const firebase = initializeApp({
 
@@ -21,6 +22,12 @@ export const firebase = initializeApp({
 export const auth = getAuth(firebase)
 
 export const db = getFirestore(firebase)
+
+export const storage = getStorage();
+
+export const storageRef = ref(storage)
+
+export const imagesRef = ref(storage, 'images')
 
 
 
