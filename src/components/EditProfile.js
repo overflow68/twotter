@@ -25,12 +25,15 @@ const handleChange = (e) =>{
   }
 }
 
-const uploadImg =(file)=>{
+const uploadImg =async (file)=>{
   const pfpRef = ref(storage, `images/${userId}.jpg`)
-  uploadBytes(pfpRef,file).then((snapshot)=>{
+  const uploadImage = async ()=>{
+  await uploadBytes(pfpRef,file).then((snapshot)=>{
     console.log("uploaded")
-  }).then(
-    getDownloadURL(pfpRef)
+  })
+  }
+  await uploadImage()
+  getDownloadURL(pfpRef)
   .then((url) => {
    const userRef = doc(db,"users",userId);
 
@@ -39,7 +42,7 @@ const uploadImg =(file)=>{
    })
 
   })
-  )
+  
 
 }
 
