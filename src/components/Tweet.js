@@ -15,11 +15,7 @@ import {BsDot} from 'react-icons/bs'
 
 
 function Tweet({addCommentInfo,likedPosts,item}) { 
-  const checkIfLiked = ()=>{
-  if (likedPosts.includes(item.id)){
-    return true
-  }else return false
- } 
+
  const[likes,setLikes] = useState(0)
  const[liked,setLiked] = useState(false)
  const[user1,setUser] = useState("")

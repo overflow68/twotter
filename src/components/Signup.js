@@ -60,9 +60,10 @@ function Signup({toggle,showSign}) {
   }
 
   const handleSubmit = async () =>{
-    const q = query(usersRef, where("username", "==", inputUserName.current.value));
+    const q = query(usersRef, where("username", "==", "@"+inputUserName.current.value));
     const querySnapshot = await getDocs(q);
     if (querySnapshot.empty){
+      console.log(querySnapshot.empty)
       signUp(inputEmail.current.value,inputPassword.current.value).then(async(userData)=>{
         await setDoc(doc(db, "users", userData.user.uid), {
         name:inputName.current.value,
@@ -77,7 +78,7 @@ function Signup({toggle,showSign}) {
       });
       })
       
-    }
+    }else{alert("This username is already in use!")}
   }
 
 

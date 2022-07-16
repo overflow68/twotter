@@ -44,7 +44,7 @@ function Feed() {
         
       
     }
-  }, [isLoading]);
+  }, [isLoading,userInfo]);
 
   return (
     <div >
