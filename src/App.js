@@ -6,7 +6,7 @@ import Feed from "./components/Feed.js";
 import "./styles/app.css";
 import { UserAuthContextProvider } from "./AuthProvider";
 import { UserInfoContextProvider } from "./userInfoProvider.js";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
 
