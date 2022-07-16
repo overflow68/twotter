@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/twotter/static/css/main.d5e57bde.css",
+    "main.js": "/twotter/static/js/main.a0c9cc7f.js",
+    "static/media/bg.png": "/twotter/static/media/bg.36dbbe347e30e4be16a2.png",
+    "index.html": "/twotter/index.html",
+    "main.d5e57bde.css.map": "/twotter/static/css/main.d5e57bde.css.map",
+    "main.a0c9cc7f.js.map": "/twotter/static/js/main.a0c9cc7f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d5e57bde.css",
+    "static/js/main.a0c9cc7f.js"
+  ]
+}
